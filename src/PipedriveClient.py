@@ -50,8 +50,8 @@ class PipedriveClient:
         except requests.exceptions.RequestException as e:
             print(f"Error creating organization: {e}")
             return None
-        
-            def create_contact(self, data: Dict[str, Any], org_id: int = None) -> Optional[Dict[str, Any]]:
+
+    def create_contact(self, data: Dict[str, Any], org_id: int = None) -> Optional[Dict[str, Any]]:
         """
         Create a contact in Pipedrive and optionally associate with an organization.
         
