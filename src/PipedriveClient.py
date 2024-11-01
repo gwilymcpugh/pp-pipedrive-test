@@ -50,3 +50,75 @@ class PipedriveClient:
         except requests.exceptions.RequestException as e:
             print(f"Error creating organization: {e}")
             return None
+        
+            def create_contact(self, data: Dict[str, Any], org_id: int = None) -> Optional[Dict[str, Any]]:
+        """
+        Create a contact in Pipedrive and optionally associate with an organization.
+        
+        Args:
+            data: Dictionary containing contact data from the form
+            org_id: Optional organization ID to associate the contact with
+            
+        Returns:
+            Dictionary containing the created contact data or None if creation failed
+        """
+        try:
+            # Map the form data to Pipedrive fields
+            payload = {
+                'name': data.get('name', ''),
+                'email': [{'value': data.get('email', ''), 'primary': True}]
+            }
+
+            # Associate with organization if org_id is provided
+            if org_id:
+                payload['org_id'] = org_id
+
+            # Make the API request
+            response = self.session.post(
+                f"{self.base_url}persons",
+                json=payload
+            )
+            response.raise_for_status()
+            
+            return response.json().get('data')
+            
+        except requests.exceptions.RequestException as e:
+            print(f"Error creating contact: {e}")
+            return None
+
+    def process_form_submission(self, form_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Process a form submission by creating both organization and contact.
+        
+        Args:
+            form_data: Dictionary containing all form data
+            
+        Returns:
+            Dictionary containing results of both creation operations
+        """
+        result = {
+            'success': False,
+            'organization': None,
+            'contact': None,
+            'error': None
+        }
+
+        try:
+            # First create the organization
+            org = self.create_organization(form_data)
+            if not org:
+                raise Exception("Failed to create organization")
+            result['organization'] = org
+
+            # Then create the contact and associate with the organization
+            contact = self.create_contact(form_data, org.get('id'))
+            if not contact:
+                raise Exception("Failed to create contact")
+            result['contact'] = contact
+
+            result['success'] = True
+
+        except Exception as e:
+            result['error'] = str(e)
+
+        return result
