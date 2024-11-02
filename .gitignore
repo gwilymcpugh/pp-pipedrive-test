@@ -1,2 +1,5 @@
 .DS_Store
 .DS_Store
+echo "__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
+echo ".DS_Store" >> .gitignore
