@@ -8,7 +8,7 @@ def test_form_submission():
         'email': 'contact@testcompany.com',
         'industry': 'Technology',
         'number_of_employees': '11-50',
-        'Current Commercial Insurer': 'AIG',  # Updated field name
+        'Current Commercial Insurer': 'tttt',  # Updated field name
         'Which insurance products do you currently have?': 'Public Liability Insurance',  # Updated field name
         'interests': 'Direct environmental impact through policies'
     }
