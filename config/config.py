@@ -1,4 +1,4 @@
-cat > config/config.py << EOL
+
 # Pipedrive API configuration
 PIPEDRIVE_API_TOKEN = '5e74823582b2b2a0a7ca1f6ec5d278a5cc320823'
 PIPEDRIVE_API_URL = 'https://api.pipedrive.com/v1/'
@@ -29,4 +29,3 @@ EMPLOYEE_NUMBER_MAPPING = {
     '251-500': 500,
     '501+': 1000
 }
-EOL
