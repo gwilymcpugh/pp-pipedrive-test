@@ -12,7 +12,7 @@ class FormHandler:
         Validates required fields in form data
         """
         errors = {}
-        required_fields = ['name', 'email', 'industry', 'number_of_employees']
+        required_fields = ['name', 'company_name', 'email', 'industry', 'number_of_employees']  # Added company_name
         
         for field in required_fields:
             if not form_data.get(field):

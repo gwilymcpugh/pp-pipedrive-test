@@ -26,10 +26,10 @@ class PipedriveClient:
         try:
             # Map the form data to Pipedrive fields
             payload = {
-                'name': data.get('name', ''),
+                'name': data.get('company_name', ''),  # Changed from 'name' to 'company_name'
                 str(FIELD_MAPPINGS['organization']['industry']): data.get('industry', ''),
-                str(FIELD_MAPPINGS['organization']['current_insurer']): data.get('current_insurer', ''),
-                str(FIELD_MAPPINGS['organization']['current_products']): data.get('current_products', ''),
+                str(FIELD_MAPPINGS['organization']['current_insurer']): data.get('Current Commercial Insurer', ''),  # Updated field name
+                str(FIELD_MAPPINGS['organization']['current_products']): data.get('Which insurance products do you currently have?', ''),  # Updated field name
                 str(FIELD_MAPPINGS['organization']['interests']): data.get('interests', '')
             }
 
